@@ -1,0 +1,466 @@
+<! copyright by seventh >
+<!DOCTYPE HTML>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>Damage Calculator for DH ver.0.01</title>
+        <style>
+            h2 {
+                border-bottom: 1px solid #000000;
+            }
+            div.content{
+                margin-left: 50px;
+            }
+            input[type="text"] {
+                width : 50px;
+                text-align: right;
+            }
+            .result {
+                text-align: right;
+            }
+            #as_bonus {
+                text-align: right;
+            }
+            table {
+                border:1px solid #000000; 
+                border-collapse:collapse;
+            }
+            table td{
+                border:1px solid #000000;
+            }
+            table th{
+                border:1px solid #000000;
+            }
+            table th{
+                background-color:#00008b;color:#ffffff;
+            }
+            table tr:nth-child(odd)  td{
+                background-color:#f0fff0;color:#000000;
+            }
+            table tr:nth-child(even) td{
+                background-color:#e0ffff;color:#000000;
+            }
+            #parts_type {
+                width: 242px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Damage Calculator for DH ver0.01</h1>
+        <div class="block">
+                <h2>Calculate Damage</h2>
+                <div class="content">
+                                <table>
+                                    <tr>
+                                        <th>Parts</th>
+                                        <th>DPS</th>
+                                        <th>DEX</th>
+                                        <th>VIT</th>
+                                        <th>CR(%)</th>
+                                        <th>CD(%)</th>
+                                        <th>AS(%)</th>
+                                    </tr>
+                                    <tr>
+                                        <td>Basic</td>
+                                        <td><input id="dps_basic" name="dps_basic" type="text" /></td>
+                                        <td><input id="dex_basic" name="dex_basic" type="text"/></td>
+                                        <td><input id="vit_basic" name="vit_basic" type="text"/></td>
+                                        <td><input id="cr_basic" name="cr_basic" type="text"/></td>
+                                        <td><input id="cd_basic" name="cd_basic" type="text"/></td>
+                                        <td><input id="as_basic" name="as_basic" type="text"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Head(helm)</td>
+                                        <td><input id="dps_head" name="dps_head" type="text" /></td>
+                                        <td><input id="dex_head" name="dex_head" type="text" /></td>
+                                        <td><input id="vit_head" name="vit_head" type="text" /></td>
+                                        <td><input id="cr_head" name="cr_head" type="text" /></td>
+                                        <td><input id="cd_head" name="cd_head" type="text" /></td>
+                                        <td><input id="as_head" name="as_head" type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Shoulders(shoulders)</td>
+                                        <td><input id="dps_shoulders" name="dps_shoulders" type="text" /></td>
+                                        <td><input id="dex_shoulders" name="dex_shoulders" type="text" /></td>
+                                        <td><input id="vit_shoulders" name="vit_shoulders" type="text" /></td>
+                                        <td><input id="cr_shoulders" name="cr_shoulders" type="text" /></td>
+                                        <td><input id="cd_shoulders" name="cd_shoulders" type="text" /></td>
+                                        <td><input id="as_shoulders" name="as_shoulders" type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Wrists(bracers)</td>
+                                        <td><input id="dps_wrists" name="dps_wrists" type="text" /></td>
+                                        <td><input id="dex_wrists" name="dex_wrists" type="text" /></td>
+                                        <td><input id="vit_wrists" name="vit_wrists" type="text" /></td>
+                                        <td><input id="cr_wrists" name="cr_wrists" type="text" /></td>
+                                        <td><input id="cd_wrists" name="cd_wrists" type="text" /></td>
+                                        <td><input id="as_wrists" name="as_wrists" type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hands(gloves)</td>
+                                        <td><input id="dps_hands" name="dps_hands" type="text" /></td>
+                                        <td><input id="dex_hands" name="dex_hands" type="text" /></td>
+                                        <td><input id="vit_hands" name="vit_hands" type="text" /></td>
+                                        <td><input id="cr_hands" name="cr_hands" type="text" /></td>
+                                        <td><input id="cd_hands" name="cd_hands" type="text" /></td>
+                                        <td><input id="as_hands" name="as_hands" type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Torso(chest armor,cloak)</td>
+                                        <td><input id="dps_torso" name="dps_torso" type="text" /></td>
+                                        <td><input id="dex_torso" name="dex_torso" type="text" /></td>
+                                        <td><input id="vit_torso" name="vit_torso" type="text" /></td>
+                                        <td><input id="cr_torso" name="cr_torso" type="text" /></td>
+                                        <td><input id="cd_torso" name="cd_torso" type="text" /></td>
+                                        <td><input id="as_torso" name="as_torso" type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Waist(belt)</td>
+                                        <td><input id="dps_waist" name="dps_waist" type="text" /></td>
+                                        <td><input id="dex_waist" name="dex_waist" type="text" /></td>
+                                        <td><input id="vit_waist" name="vit_waist" type="text" /></td>
+                                        <td><input id="cr_waist" name="cr_waist" type="text" /></td>
+                                        <td><input id="cd_waist" name="cd_waist" type="text" /></td>
+                                        <td><input id="as_waist" name="as_waist" type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Legs(pants)</td>
+                                        <td><input id="dps_legs" name="dps_legs" type="text" /></td>
+                                        <td><input id="dex_legs" name="dex_legs" type="text" /></td>
+                                        <td><input id="vit_legs" name="vit_legs" type="text" /></td>
+                                        <td><input id="cr_legs" name="cr_legs" type="text" /></td>
+                                        <td><input id="cd_legs" name="cd_legs" type="text" /></td>
+                                        <td><input id="as_legs" name="as_legs" type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Feet(boots)</td>
+                                        <td><input id="dps_feet" name="dps_feet" type="text" /></td>
+                                        <td><input id="dex_feet" name="dex_feet" type="text" /></td>
+                                        <td><input id="vit_feet" name="vit_feet" type="text" /></td>
+                                        <td><input id="cr_feet" name="cr_feet" type="text" /></td>
+                                        <td><input id="cd_feet" name="cd_feet" type="text" /></td>
+                                        <td><input id="as_feet" name="as_feet" type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Neck(amulet)</td>
+                                        <td><input id="dps_neck" name="dps_neck" type="text" /></td>
+                                        <td><input id="dex_neck" name="dex_neck" type="text" /></td>
+                                        <td><input id="vit_neck" name="vit_neck" type="text" /></td>
+                                        <td><input id="cr_neck" name="cr_neck" type="text" /></td>
+                                        <td><input id="cd_neck" name="cd_neck" type="text" /></td>
+                                        <td><input id="as_neck" name="as_neck" type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Finger1(ring)</td>
+                                        <td><input id="dps_finger1" name="dps_finger1" type="text" /></td>
+                                        <td><input id="dex_finger1" name="dex_finger1" type="text" /></td>
+                                        <td><input id="vit_finger1" name="vit_finger1" type="text" /></td>
+                                        <td><input id="cr_finger1" name="cr_finger1" type="text" /></td>
+                                        <td><input id="cd_finger1" name="cd_finger1" type="text" /></td>
+                                        <td><input id="as_finger1" name="as_finger1" type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Finger2(ring)</td>
+                                        <td><input id="dps_finger2" name="dps_finger2" type="text" /></td>
+                                        <td><input id="dex_finger2" name="dex_finger2" type="text" /></td>
+                                        <td><input id="vit_finger2" name="vit_finger2" type="text" /></td>
+                                        <td><input id="cr_finger2" name="cr_finger2" type="text" /></td>
+                                        <td><input id="cd_finger2" name="cd_finger2" type="text" /></td>
+                                        <td><input id="as_finger2" name="as_finger2" type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hand(weapon)</td>
+                                        <td><input id="dps_hand" name="dps_hand" type="text" /></td>
+                                        <td><input id="dex_hand" name="dex_hand" type="text" /></td>
+                                        <td><input id="vit_hand" name="vit_hand" type="text" /></td>
+                                        <td><input id="cr_hand" name="cr_hand" type="text" /></td>
+                                        <td><input id="cd_hand" name="cd_hand" type="text" /></td>
+                                        <td><input id="as_hand" name="as_hand" type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Off-hand(weapon,quiver,shield)</td>
+                                        <td><input id="dps_off_hand" name="dps_off_hand" type="text" /></td>
+                                        <td><input id="dex_off_hand" name="dex_off_hand" type="text" /></td>
+                                        <td><input id="vit_off_hand" name="vit_off_hand" type="text" /></td>
+                                        <td><input id="cr_off_hand" name="cr_off_hand" type="text" /></td>
+                                        <td><input id="cd_off_hand" name="cd_off_hand" type="text" /></td>
+                                        <td><input id="as_off_hand" name="as_off_hand" type="text" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>AS bonus</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td id="as_bonus"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Results</td>
+                                        <td id="dps_result" class="result"></td>
+                                        <td id="dex_result" class="result"></td>
+                                        <td id="vit_result" class="result"></td>
+                                        <td id="cr_result" class="result"></td>
+                                        <td id="cd_result" class="result"></td>
+                                        <td id="as_result" class="result"></td>
+                                    </tr>
+                                </table>
+                                <br>
+                                <input type="button" value="Caliculate" onclick="calc();" />
+                                <input type="button" value="Save LocalStorage" onclick="set_all_values();" />
+                                <input type="button" value="Clear LocalStorage" onclick="clear_values();" />
+                                <br>
+                        
+                                <h3>Damage : <span id="damage">0</span></h3>
+                </div>
+        </div>
+
+        <div class="block">
+                <h2>Compare with New Item</h2>
+        
+                <div class="content">
+                                <table>
+                                    <tr>
+                                        <th>Type</th>
+                                        <th>DPS</th>
+                                        <th>DEX</th>
+                                        <th>VIT</th>
+                                        <th>CR(%)</th>
+                                        <th>CD(%)</th>
+                                        <th>AS(%)</th>
+                                    </tr>
+                                    <tr>
+                                        <td><select id="parts_type" name="parts_type">
+                                                <option value="head" selected >Head(helm)</option>
+                                                <option value="shoulders">Shoulders(shoulders)</option>
+                                                <option value="wrists">Wrists(bracers)</option>
+                                                <option value="hands">Hands(gloves)</option>
+                                                <option value="torso">Torso(chest armor,cloak)</option>
+                                                <option value="waist">Waist(belt)</option>
+                                                <option value="legs">Legs(pants)</option>
+                                                <option value="feet">Feet(boots)</option>
+                                                <option value="neck">Neck(amulet)</option>
+                                                <option value="finger1">Finger1(ring)</option>
+                                                <option value="finger2">Finger2(ring)</option>
+                                                <option value="hand">Hand(weapon)</option>
+                                                <option value="off_hand">Off-hand(weapon,quiver,shield)</option>
+                                        </select></td>
+                                        <td><input id="dps_new" name="dps_new" type="text" /></td>
+                                        <td><input id="dex_new" name="dex_new" type="text"/></td>
+                                        <td><input id="vit_new" name="vit_new" type="text"/></td>
+                                        <td><input id="cr_new" name="cr_new" type="text"/></td>
+                                        <td><input id="cd_new" name="cd_new" type="text"/></td>
+                                        <td><input id="as_new" name="as_new" type="text"/></td>
+                                    </tr>
+                                </table>
+                                <br>
+                                <input type="button" value="Compare" onclick="compare();" />
+                                <br>
+                                <h3>New Damage : <span id="new_damage">0</span></h3>
+                                <h3>Damage Change : <span id="damage_change">0</span></h3>
+                </div>
+        
+        </div>
+
+        <hr>
+        Coyright by seventhsense <a href="https://github.com/seventhsense">download from github</a>
+
+        <script>
+            if(!confirm("This Calculator never guarantee numerical accuracy.\nUse this Calculator at your own risk. \nWhen you agree those,press 'Ok'.")){location.href = "http://google.com/";}
+            var columns = ["dps","dex","vit","cr","cd","as"]
+            var rows = ["basic","head","shoulders","wrists","hands","torso","waist","legs","feet","neck","finger1","finger2","hand","off_hand"];
+            var results = [];
+            var damage = 0;
+            if(localStorage.getItem('dex_basic')){
+                get_all_values();
+                calc();
+                }else{
+                get_all_values();
+                document.getElementById('dex_basic').value = 187;
+                document.getElementById('vit_basic').value = 127;
+                document.getElementById('cr_basic').value = 5;
+                document.getElementById('cd_basic').value = 50;
+            }
+
+            function calc() {
+                for (var i in columns){
+                    if(i == 0){ 
+                        //dpsの場合はアベレージを求める
+                        //todo:dmg+の計算
+                        var hand_dps = parseFloat(document.getElementById("dps_hand").value);
+                        var off_hand_dps = parseFloat(document.getElementById("dps_off_hand").value);
+                        result = average(hand_dps,off_hand_dps);
+                        }else if(i == 5){
+                        //asの場合武器asを考慮しない
+                        //asの場合off-handが武器の場合のみasを考慮しない
+                        //asの場合両手持ちの場合はas+15
+                        result = sum_as(columns[i]);
+                        }else{
+                        result = sum(columns[i]);
+                    }
+                    results[i] = result;
+                    var result_id = columns[i] + "_result"
+                    document.getElementById(result_id).innerHTML = result;
+                }
+                //ダメージ計算
+                damage = damage_calc(results);
+                document.getElementById("damage").innerHTML = damage;
+            }
+
+            function clear_values(){
+                localStorage.clear();
+                location.reload();
+            }
+
+            function set_all_values(){
+                for(var i in columns){
+                    for(var j in rows){
+                        key = columns[i] + "_" + rows[j];
+                        val = document.getElementById(key).value; 
+                        localStorage.setItem(key,val);
+                    }
+                }
+            }
+
+            function get_all_values(){
+                for(var i in columns){
+                    for(var j in rows){
+                        key = columns[i] + "_" + rows[j];
+                        val = localStorage.getItem(key);
+                        document.getElementById(key).value = val; 
+                    }
+                }
+            }
+
+            function average(hand_dps,off_hand_dps){
+                var average = 0;
+                if(off_hand_dps){
+                    average = (hand_dps + off_hand_dps)/2;
+                    }else{
+                    average = hand_dps;
+                }
+                return average;
+            }
+
+            function sum(column_name){
+                var total = 0;
+                var id_name = "";
+                var val = 0;
+                for (var i in rows){
+                    id_name = column_name + "_" + rows[i]; 
+                    val = parseFloat(document.getElementById(id_name).value);
+                    //parseFloatできないものはNaNを返すためNaNを判定する
+                    if(val){
+                        total += val;
+                    }
+                }
+                return total;
+            }
+
+            function sum_as(column_name){
+                // 列のtotalを求める（考慮しないものを引いていく）
+                var total = sum(column_name);
+                //asの場合武器asを考慮しない
+                var hand_as = parseFloat(document.getElementById("as_hand").value);
+                if(hand_as){
+                    total -= hand_as;
+                }
+                //両手持ちチェック off_handにdpsが入っている場合
+                var off_hand_dps = parseFloat(document.getElementById("dps_off_hand").value);
+                if(off_hand_dps && (off_hand_dps != 0)){
+                    //asの場合両手持ちの場合のみoff_handのasを考慮しない
+                    var off_hand_as = parseFloat(document.getElementById("as_off_hand").value);
+                    if(off_hand_as){
+                        total -= off_hand_as;
+                    }
+                    //asの場合両手持ちの場合はas+15
+                    total += 15;
+                    document.getElementById("as_bonus").innerHTML = "+15";
+                }else{
+                    document.getElementById("as_bonus").innerHTML = "";
+                }
+                return total;
+            }
+
+            function damage_calc(results){
+                //定義
+                dps = results[0];
+                dex = results[1];
+                vit = results[2];
+                cr = results[3] / 100;
+                cd = results[4] / 100;
+                as = results[5] / 100;
+                //計算式
+                dmg = dps * (1 + cr * cd) * (1 + as) * (1 + dex / 100);
+                return dmg;
+            }
+
+            function compare(){
+                // New Itemの数値取得
+                var new_values = [];
+                for(var i in columns){
+                    id_name = columns[i] + "_new";
+                    new_values[i] = document.getElementById(id_name).value;
+                }
+                // 新しいパーツが武器の場合asは足さない
+                if(new_values[0] > 0){new_values[5] = 0;}
+                // Type判定
+                var parts_type = document.getElementById('parts_type').value;
+                // 元のpartsの数値取得
+                var parts_values = [];
+                for(var i in columns){
+                    id_name = columns[i] + "_" + parts_type;
+                    parts_values[i] = document.getElementById(id_name).value;
+                }
+                // 元のパーツが武器の場合asは引かない
+                if(parts_values[0] > 0){
+                    parts_values[5] = 0;
+                    // さらに、新しいパーツがoff_handで武器以外の場合ボーナス15を引く
+                    if(parts_type == "off_hand" && new_values[0] == 0){
+                        parts_values[5] = 15; 
+                    }
+                }
+                // 古いパーツが武器以外でかつoff_handでかつ新しいパーツが武器の場合ボーナス15を足す
+                if((parts_values[0] == 0 && parts_type == "off_hand") && new_values[0] > 0){
+                    new_values[5] = 15;
+                } 
+                // 元のpartsの数値をマイナス
+                var new_results = [];
+                new_results = series_calc(results,"minus",parts_values);
+                // 新しいpartsの数値をプラス
+                new_results = series_calc(new_results,"plus",new_values);
+                // 武器の場合off_handを変更する場合新しくdpsの平均を算出
+                if(new_values[0] > 0 || parts_type == "off_hand"){
+                    if(parts_type == "hand"){
+                        dps_hand = parseFloat(new_values[0]);
+                        dps_off_hand = parseFloat(document.getElementById('dps_off_hand').value);
+                    }else if(parts_type == "off_hand"){
+                        dps_hand = parseFloat(document.getElementById('dps_hand').value);
+                        dps_off_hand = parseFloat(new_values[0]);
+                    }
+                    new_results[0] = average(dps_hand,dps_off_hand);
+                    console.log(new_values);
+                } 
+                // New Damageを計算
+                var new_damage = damage_calc(new_results);
+                document.getElementById('new_damage').innerHTML = new_damage;
+                // Damage changeを計算
+                var damage_change = new_damage - damage;
+                document.getElementById('damage_change').innerHTML = damage_change;
+            }
+
+            function series_calc(array1,plus_minus,array2){
+                total_array = [];
+                if(plus_minus == "plus"){
+                    v = 1;
+                    }else{
+                    v = -1;
+                }
+                for(var i = i in array1){
+                    total_array[i] = array1[i] + array2[i] * v;
+                }
+                return total_array;
+            }
+        </script>
+    </body>
+</html>
